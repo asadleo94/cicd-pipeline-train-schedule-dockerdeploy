@@ -27,9 +27,8 @@ pipeline {
             }
             steps {
                 script {
-                    docker.withRegistry('https://173151801028.dkr.ecr.eu-central-1.amazonaws.com', 'AWS_Login') {
-                        app.push("${env.BUILD_NUMBER}")
-                        app.push("latest")  
+                    docker.withRegistry('https://173151801028.dkr.ecr.eu-central-1.amazonaws.com', 'ecr:eu-central-1:AWS_Login') {
+                        docker.image('cloudyrion_images').push('latest')
                 }
             }
         }
