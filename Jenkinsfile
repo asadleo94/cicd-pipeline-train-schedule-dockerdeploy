@@ -26,14 +26,13 @@ pipeline {
                 branch 'master'
             }
             steps {
-                withCredentials([usernamePassword(credentialsId: 'harbor_hub_login', usernameVariable: 'USERNAME', passwordVariable: 'USERPASS')]) {
-                script {
-                    sh "docker login -u $USERNAME --password-stdin '$USERPASS' https://18.197.69.199/"
-                    echo '${env.BUILD_NUMBER}'
-                    echo 'latest"'
+                script {                    
+                    docker.withRegistry('https://173151801028.dkr.ecr.eu-central-1.amazonaws.com', 'AWS_Login') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")  
                     }   
                 }
-            }
+            
         }
     }
 }
