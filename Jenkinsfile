@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("clooudyrion_images")
+                    app = docker.build("cloudyrion_images")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
                     }
