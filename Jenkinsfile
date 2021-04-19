@@ -27,18 +27,9 @@ pipeline {
             }
             steps {
                 script {                    
-                    sh 'rm  ~/.dockercfg || true'
-                    sh 'rm ~/.docker/config.json || true'
-        
-        //configure registry
-        docker.withRegistry('https://173151801028.dkr.ecr.eu-central-1.amazonaws.com/cloudyrion_images', 'AWS_Login') {
-          
-            //build image
-            def customImage = docker.build("my-image:${env.BUILD_ID}")
-            
-            //push image
-            customImage.push()                    
-                    }   
+
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
                 }
         }
     }
