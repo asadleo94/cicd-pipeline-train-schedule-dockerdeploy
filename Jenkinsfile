@@ -27,7 +27,7 @@ pipeline {
             }
             steps {
                 script {
-                  sh "DOCKER_CONFIG=.docker AWS_ACCESS_KEY_ID=AKIASQUFGZ3CIZX2JZH3 AWS_SECRET_ACCESS_KEY=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 docker pull [My Image]"
+                  sh "DOCKER_CONFIG=.docker AWS_ACCESS_KEY_ID=[AKIASQUFGZ3CIZX2JZH3] AWS_SECRET_ACCESS_KEY=[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] docker pull [My Image]"
                      docker.build("${tag}", "${DOCKER_BUILD_ARGS} -f Dockerfile .")
                     sh "docker push ${tag}"
                 }
