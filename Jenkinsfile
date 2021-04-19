@@ -32,7 +32,6 @@ pipeline {
                         app.push("latest")  
                     }   
                 }
-            
         }
     }
 }
