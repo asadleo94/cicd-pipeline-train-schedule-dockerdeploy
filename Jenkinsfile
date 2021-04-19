@@ -14,7 +14,7 @@ pipeline {
             }
             steps {
                 script {
-                    app = docker.build("asad/train-schedule")
+                    app = docker.build("clooudyrion_images")
                     app.inside {
                         sh 'echo $(curl localhost:8080)'
                     }
@@ -28,7 +28,9 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://173151801028.dkr.ecr.eu-central-1.amazonaws.com', 'ecr:eu-central-1:AWS_Login') {
-                        docker.image('cloudyrion_images').push('latest')
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")
+                    }
                 }
             }
         }
