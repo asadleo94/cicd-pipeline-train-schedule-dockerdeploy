@@ -27,8 +27,9 @@ pipeline {
             }
             steps {
                 script {
-                  sh "DOCKER_CONFIG=.docker AWS_ACCESS_KEY_ID='AKIASQUFGZ3CIZX2JZH3' AWS_SECRET_ACCESS_KEY='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' docker pull 'my_image'"
-                    sh "docker push ${tag}"
+                    docker.withRegistry('https://173151801028.dkr.ecr.eu-central-1.amazonaws.com', 'AWS_Login') {
+                        app.push("${env.BUILD_NUMBER}")
+                        app.push("latest")  
                 }
             }
         }
